@@ -21,9 +21,9 @@ public class Tests {
         ILoader loader = new Filer();
         loader.loadNextLevel((ILoadable)game);
         assertEquals("Maze 1 (3 x 3)", game.getLevelName());
-        assertTrue(new Point(2, 1).equals(game.getTheseusLocation()));
-        assertTrue(new Point(0, 1).equals(game.getMinotaurLocation()));
-        assertTrue(new Point(1, 3).equals(game.getExitLocation()));
+        assertTrue(new Point(2, 1).equals(game.wheresTheseus()));
+        assertTrue(new Point(0, 1).equals(game.wheresMinotaur()));
+        assertTrue(new Point(1, 3).equals(game.wheresExit()));
         assertEquals(0, game.getMoveCount());
     }
 
@@ -89,7 +89,7 @@ public class Tests {
         ILoader loader = new Filer();
         loader.loadNextLevel((ILoadable)game);
         game.moveTheseus(Direction.LEFT);
-        assertTrue(new Point(2, 0).equals(game.getTheseusLocation()));
+        assertTrue(new Point(2, 0).equals(game.wheresTheseus()));
     }
 
     @Test
@@ -98,7 +98,7 @@ public class Tests {
         ILoader loader = new Filer();
         loader.loadNextLevel((ILoadable)game);
         game.moveTheseus(Direction.RIGHT);
-        assertTrue(new Point(2, 2).equals(game.getTheseusLocation()));
+        assertTrue(new Point(2, 2).equals(game.wheresTheseus()));
     }
 
     @Test
@@ -116,7 +116,7 @@ public class Tests {
         ILoader loader = new Filer();
         loader.loadNextLevel((ILoadable)game);
         game.moveTheseus(Direction.UP);
-        assertTrue(new Point(2, 1).equals(game.getTheseusLocation()));
+        assertTrue(new Point(2, 1).equals(game.wheresTheseus()));
     }
 
     @Test
@@ -134,7 +134,7 @@ public class Tests {
         ILoader loader = new Filer();
         loader.loadNextLevel((ILoadable)game);
         game.moveTheseus(Direction.DOWN);
-        assertTrue(new Point(2, 1).equals(game.getTheseusLocation()));
+        assertTrue(new Point(2, 1).equals(game.wheresTheseus()));
     }
 
     @Test
@@ -154,7 +154,7 @@ public class Tests {
         loader.loadNextLevel((ILoadable)game);
         game.moveTheseus(Direction.RIGHT);
         game.moveTheseus(Direction.UP);
-        assertTrue(new Point(1, 2).equals(game.getTheseusLocation()));
+        assertTrue(new Point(1, 2).equals(game.wheresTheseus()));
     }
 
     @Test
@@ -164,7 +164,7 @@ public class Tests {
         loader.loadNextLevel((ILoadable)game);
         game.moveTheseus(Direction.LEFT);
         game.moveTheseus(Direction.UP);
-        assertTrue(new Point(1, 0).equals(game.getTheseusLocation()));
+        assertTrue(new Point(1, 0).equals(game.wheresTheseus()));
     }
 
     @Test
@@ -201,7 +201,7 @@ public class Tests {
         loader.loadNextLevel((ILoadable)game);
         game.moveMinotaur();
         game.moveMinotaur();
-        assertTrue(new Point(0, 1).equals(game.getMinotaurLocation()));
+        assertTrue(new Point(0, 1).equals(game.wheresMinotaur()));
     }
 
     @Test
@@ -212,7 +212,7 @@ public class Tests {
         game.moveTheseus(Direction.LEFT);
         game.moveMinotaur();
         game.moveMinotaur();
-        assertTrue(new Point(1, 0).equals(game.getMinotaurLocation()));
+        assertTrue(new Point(1, 0).equals(game.wheresMinotaur()));
     }
 
     @Test
@@ -226,7 +226,7 @@ public class Tests {
         game.moveTheseus(Direction.RIGHT);
         game.moveMinotaur();
         game.moveMinotaur();
-        assertTrue(new Point(1, 1).equals(game.getMinotaurLocation()));
+        assertTrue(new Point(1, 1).equals(game.wheresMinotaur()));
     }
 
     @Test
@@ -265,8 +265,8 @@ public class Tests {
         game.moveMinotaur();
         game.moveMinotaur();
         game.moveMinotaur();
-        assertTrue(new Point(2, 0).equals(game.getTheseusLocation()));
-        assertTrue(new Point(2, 0).equals(game.getMinotaurLocation()));
+        assertTrue(new Point(2, 0).equals(game.wheresTheseus()));
+        assertTrue(new Point(2, 0).equals(game.wheresMinotaur()));
     }
 
     @Test
@@ -300,62 +300,99 @@ public class Tests {
         assertFalse(game.isLost());
         game.moveTheseus(Direction.RIGHT);
         assertTrue(game.isWon());
-        assertTrue(new Point(1, 1).equals(game.getMinotaurLocation()));
+        assertTrue(new Point(1, 1).equals(game.wheresMinotaur()));
     }
 
     @Test
     public void loadsLevel2() {
-
+        IGame game = new Game();
+        ILoader loader = new Filer();
+        loader.loadLevel((ILoadable)game, 1);
+        assertEquals("Maze 2 (7 x 4)", game.getLevelName());
     }
 
     @Test
     public void loadsLevel2LoadNext() {
-
+        IGame game = new Game();
+        ILoader loader = new Filer();
+        loader.loadNextLevel((ILoadable)game);
+        game = new Game();
+        loader.loadNextLevel((ILoadable) game);
+        assertEquals("Maze 2 (7 x 4)", game.getLevelName());
     }
 
     @Test
     public void loadLevel3() {
-
+        IGame game = new Game();
+        ILoader loader = new Filer();
+        loader.loadLevel((ILoadable)game, 2);
+        assertEquals("Maze 3 (3 x 4)", game.getLevelName());
     }
 
     @Test
     public void loadLevel4() {
-
+        IGame game = new Game();
+        ILoader loader = new Filer();
+        loader.loadLevel((ILoadable)game, 3);
+        assertEquals("Maze 4 (5 x 5)", game.getLevelName());
     }
 
     @Test
     public void loadLevel5() {
-
+        IGame game = new Game();
+        ILoader loader = new Filer();
+        loader.loadLevel((ILoadable)game, 4);
+        assertEquals("Maze 5 (7 x 5)", game.getLevelName());
     }
 
     @Test
     public void loadLevel6() {
-
+        IGame game = new Game();
+        ILoader loader = new Filer();
+        loader.loadLevel((ILoadable)game, 5);
+        assertEquals("Maze 6 (6 x 6)", game.getLevelName());
     }
 
     @Test
     public void loadLevel7() {
-
+        IGame game = new Game();
+        ILoader loader = new Filer();
+        loader.loadLevel((ILoadable)game, 6);
+        assertEquals("Maze 7 (6 x 6)", game.getLevelName());
     }
 
     @Test
     public void loadLevel8() {
-
+        IGame game = new Game();
+        ILoader loader = new Filer();
+        loader.loadLevel((ILoadable)game, 7);
+        assertEquals("Maze 8 (9 x 8)", game.getLevelName());
     }
 
     @Test
     public void loadLevel9() {
-
+        IGame game = new Game();
+        ILoader loader = new Filer();
+        loader.loadLevel((ILoadable)game, 8);
+        assertEquals("Maze 9 (9 x 8)", game.getLevelName());
     }
 
     @Test
     public void loadLevel10() {
-
+        IGame game = new Game();
+        ILoader loader = new Filer();
+        loader.loadLevel((ILoadable)game, 9);
+        assertEquals("Maze 10 (8 x 8)", game.getLevelName());
     }
 
     @Test
-    public void loadLevel1NotLevel10() {
-
+    public void loadLevel1AfterLevel10() {
+        IGame game = new Game();
+        ILoader loader = new Filer();
+        loader.loadLevel((ILoadable)game, 9);
+        game = new Game();
+        loader.loadNextLevel((ILoadable)game);
+        assertEquals("Maze 1 (3 x 3)", game.getLevelName());
     }
 
     @Test

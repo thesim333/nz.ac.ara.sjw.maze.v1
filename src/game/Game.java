@@ -167,21 +167,6 @@ public class Game implements IGame, ISavable, ILoadable {
     }
 
 	@Override
-	public IPoint getTheseusLocation() {
-		return this.theseus;
-	}
-
-	@Override
-	public IPoint getMinotaurLocation() {
-		return this.minotaur;
-	}
-
-	@Override
-	public IPoint getExitLocation() {
-		return this.exit;
-	}
-
-	@Override
     public String getLevelName() {
         return this.levelName;
     }

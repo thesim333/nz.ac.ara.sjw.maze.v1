@@ -30,11 +30,6 @@ public class Filer implements ISaver, ILoader {
     private final String DEF_SAVE_END = ".xml";
     private int currentLevel = -1;
     private final char SOMETHING = 'x';
-    private final int HORIZONTAL = 0;
-    private final int VERTICAL = 1;
-    private final int MINOTAUR = 1;
-    private final int THESEUS = 0;
-    private final int EXIT = 2;
 
     @Override
     public void save(ISavable game) {
@@ -65,7 +60,7 @@ public class Filer implements ISaver, ILoader {
 
             String expression = "/mazes/maze";
             NodeList nodeList = (NodeList)xPath.compile(expression).evaluate(doc, XPathConstants.NODESET);
-            this.currentLevel = level % (nodeList.getLength() - 1);
+            this.currentLevel = level % nodeList.getLength();
             Node mazeNode = nodeList.item(this.currentLevel);
             Element mazeElement = (Element)mazeNode;
 
@@ -106,7 +101,7 @@ public class Filer implements ISaver, ILoader {
         return hWallsE.getElementsByTagName("row");
     }
 
-    private Point getPosition(Element pos, String thing) {
+    private IPoint getPosition(Element pos, String thing) {
         Element thingPos = (Element)pos.getElementsByTagName(thing).item(0);
         int row = Integer.parseInt(thingPos.getElementsByTagName("y").item(0).getTextContent());
         int col = Integer.parseInt(thingPos.getElementsByTagName("x").item(0).getTextContent());

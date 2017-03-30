@@ -17,11 +17,6 @@ public class Point implements IPoint {
         this.col = col;
     }
 
-    public Point() {
-        this.row = 0;
-        this.col = 0;
-    }
-
     @Override
     public int getRow() {
         return this.row;

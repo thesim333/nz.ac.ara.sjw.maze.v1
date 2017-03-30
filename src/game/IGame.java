@@ -13,9 +13,9 @@ public interface IGame {
     boolean isLost();
     int getMoveCount();
     String getLevelName();
-    IPoint getTheseusLocation();
-    IPoint getMinotaurLocation();
-    IPoint getExitLocation();
+    IPoint wheresTheseus();
+    IPoint wheresMinotaur();
+    IPoint wheresExit();
     Wall getTopWall(IPoint p);
     Wall getLeftWall(IPoint p);
 }
