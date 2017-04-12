@@ -9,4 +9,5 @@ public interface ILoader {
     void loadNextLevel(ILoadable game);
     void loadLevel(ILoadable game, int level);
     void loadSave(ILoadable game, String fileName);
+    void loadSave(ILoadable game);
 }

@@ -7,8 +7,9 @@ import communal.Wall;
  * Created by Simon Winder on 26/03/2017.
  */
 public interface IGame {
-    void moveTheseus(Direction direction);
+    boolean moveTheseus(Direction direction);
     void moveMinotaur();
+    void pauseTheseus();
     boolean isWon();
     boolean isLost();
     int getMoveCount();

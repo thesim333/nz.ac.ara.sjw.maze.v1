@@ -13,6 +13,7 @@
                 <row>xoox</row>
                 <row>xoxo</row>
                 <row>xoox</row>
+                <row>oooo</row>
             </vertical>
         </walls>
         <positions>
@@ -34,11 +35,11 @@
         <name>Maze 2 (7 x 4)</name>
         <walls>
             <horizontal>
-                <row>xxxxxxx</row>
-                <row>ooooooo</row>
-                <row>oxooooo</row>
-                <row>oooooxo</row>
-                <row>xoxxxxx</row>
+                <row>xxxxxxxo</row>
+                <row>oooooooo</row>
+                <row>oxoooooo</row>
+                <row>oooooxoo</row>
+                <row>xoxxxxxo</row>
             </horizontal>
             <vertical>
                 <row>xoooooox</row>
@@ -67,17 +68,18 @@
         <name>Maze 3 (3 x 4)</name>
         <walls>
             <horizontal>
-                <row>xxxo</row>
-                <row>oxox</row>
-                <row>ooox</row>
-                <row>xooo</row>
-                <row>xxxo</row>
+                <row>xxxoo</row>
+                <row>oxoxo</row>
+                <row>oooxo</row>
+                <row>xoooo</row>
+                <row>xxxoo</row>
             </horizontal>
             <vertical>
                 <row>xooxo</row>
                 <row>xoooo</row>
                 <row>xxoxo</row>
                 <row>xooxo</row>
+                <row>ooooo</row>
             </vertical>
         </walls>
         <positions>
@@ -99,13 +101,13 @@
         <name>Maze 4 (5 x 5)</name>
         <walls>
             <horizontal>
-                <row>ooooo</row>
-                <row>xxxox</row>
-                <row>oooxo</row>
-                <row>oxooo</row>
-                <row>oxxoo</row>
-                <row>oooxo</row>
-                <row>xxxxx</row>
+                <row>oooooo</row>
+                <row>xxxoxo</row>
+                <row>oooxoo</row>
+                <row>oxoooo</row>
+                <row>oxxooo</row>
+                <row>oooxoo</row>
+                <row>xxxxxo</row>
             </horizontal>
             <vertical>
                 <row>oooxxo</row>
@@ -114,6 +116,7 @@
                 <row>xooxox</row>
                 <row>xooxxx</row>
                 <row>xoooox</row>
+                <row>oooooo</row>
             </vertical>
         </walls>
         <positions>
@@ -135,13 +138,13 @@
         <name>Maze 5 (7 x 5)</name>
         <walls>
             <horizontal>
-                <row>ooooooo</row>
-                <row>xxxxxox</row>
-                <row>oooooxo</row>
-                <row>oxoooxo</row>
-                <row>ooxooxo</row>
-                <row>ooxxxoo</row>
-                <row>xxxxxxx</row>
+                <row>oooooooo</row>
+                <row>xxxxxoxo</row>
+                <row>oooooxoo</row>
+                <row>oxoooxoo</row>
+                <row>ooxooxoo</row>
+                <row>ooxxxooo</row>
+                <row>xxxxxxxo</row>
             </horizontal>
             <vertical>
                 <row>oooooxxo</row>
@@ -150,6 +153,7 @@
                 <row>xooxooxx</row>
                 <row>xoxoxxox</row>
                 <row>xoooooox</row>
+                <row>oooooooo</row>
             </vertical>
         </walls>
         <positions>
@@ -171,14 +175,14 @@
         <name>Maze 6 (6 x 6)</name>
         <walls>
             <horizontal>
-                <row>oooooo</row>
-                <row>xxxxox</row>
-                <row>xooooo</row>
-                <row>oxooxo</row>
-                <row>ooxoxo</row>
-                <row>ooxooo</row>
-                <row>oooooo</row>
-                <row>xxxxxx</row>
+                <row>ooooooo</row>
+                <row>xxxxoxo</row>
+                <row>xoooooo</row>
+                <row>oxooxoo</row>
+                <row>ooxoxoo</row>
+                <row>ooxoooo</row>
+                <row>ooooooo</row>
+                <row>xxxxxxo</row>
             </horizontal>
             <vertical>
                 <row>ooooxxo</row>
@@ -188,6 +192,7 @@
                 <row>xxooxox</row>
                 <row>xxxooox</row>
                 <row>xooooox</row>
+                <row>ooooooo</row>
             </vertical>
         </walls>
         <positions>
@@ -209,14 +214,14 @@
         <name>Maze 7 (6 x 6)</name>
         <walls>
             <horizontal>
-                <row>oooooo</row>
-                <row>xoxxxx</row>
-                <row>oxooxo</row>
-                <row>ooooxo</row>
-                <row>oooooo</row>
-                <row>xoooxo</row>
-                <row>ooxooo</row>
-                <row>xxxxxx</row>
+                <row>ooooooo</row>
+                <row>xoxxxxo</row>
+                <row>oxooxoo</row>
+                <row>ooooxoo</row>
+                <row>ooooooo</row>
+                <row>xoooxoo</row>
+                <row>ooxoooo</row>
+                <row>xxxxxxo</row>
             </horizontal>
             <vertical>
                 <row>oxxoooo</row>
@@ -226,6 +231,7 @@
                 <row>xxooxxx</row>
                 <row>xooooxx</row>
                 <row>xooooox</row>
+                <row>ooooooo</row>
             </vertical>
         </walls>
         <positions>
@@ -247,15 +253,15 @@
         <name>Maze 8 (9 x 8)</name>
         <walls>
             <horizontal>
-                <row>xxxxxxxxx</row>
-                <row>xoooooxo</row>
-                <row>ooxooooxo</row>
-                <row>oxooxxxoo</row>
-                <row>xooxooxxx</row>
-                <row>ooxoxxxxo</row>
-                <row>oxoxooxxx</row>
-                <row>oooxoxxxo</row>
-                <row>xoxxxxxxx</row>
+                <row>xxxxxxxxxo</row>
+                <row>xoooooxooo</row>
+                <row>ooxooooxoo</row>
+                <row>oxooxxxooo</row>
+                <row>xooxooxxxo</row>
+                <row>ooxoxxxxoo</row>
+                <row>oxoxooxxxo</row>
+                <row>oooxoxxxoo</row>
+                <row>xoxxxxxxxo</row>
             </horizontal>
             <vertical>
                 <row>xoooxoxoox</row>
@@ -288,16 +294,16 @@
         <name>Maze 9 (9 x 8)</name>
         <walls>
             <horizontal>
-                <row>ooooooooo</row>
-                <row>xxxoxxxxx</row>
-                <row>xxoooxooo</row>
-                <row>ooooooooo</row>
-                <row>oooxooooo</row>
-                <row>oxooooooo</row>
-                <row>oooooooxo</row>
-                <row>ooooooooo</row>
-                <row>oooxooooo</row>
-                <row>xxxxxxxxx</row>
+                <row>oooooooooo</row>
+                <row>xxxoxxxxxo</row>
+                <row>xxoooxoooo</row>
+                <row>oooooooooo</row>
+                <row>oooxoooooo</row>
+                <row>oxoooooooo</row>
+                <row>oooooooxoo</row>
+                <row>oooooooooo</row>
+                <row>oooxoooooo</row>
+                <row>xxxxxxxxxo</row>
             </horizontal>
             <vertical>
                 <row>oooxxoooox</row>
@@ -309,6 +315,7 @@
                 <row>xxooooooxx</row>
                 <row>xoooooooxx</row>
                 <row>xoooooooox</row>
+                <row>oooooooooo</row>
             </vertical>
         </walls>
         <positions>
@@ -330,15 +337,15 @@
         <name>Maze 10 (8 x 8)</name>
         <walls>
             <horizontal>
-                <row>xxxxxxxxx</row>
-                <row>xoooooxox</row>
-                <row>ooooooooo</row>
-                <row>ooooooooo</row>
-                <row>ooxoooxoo</row>
-                <row>ooooooooo</row>
-                <row>oxoooooxo</row>
-                <row>oxoooxooo</row>
-                <row>oxxxxxxxx</row>
+                <row>xxxxxxxxxo</row>
+                <row>xoooooxoxo</row>
+                <row>oooooooooo</row>
+                <row>oooooooooo</row>
+                <row>ooxoooxooo</row>
+                <row>oooooooooo</row>
+                <row>oxoooooxoo</row>
+                <row>oxoooxoooo</row>
+                <row>oxxxxxxxxo</row>
             </horizontal>
             <vertical>
                 <row>ooxoooooox</row>
@@ -349,6 +356,7 @@
                 <row>oxxxoooxox</row>
                 <row>oxoxoxooox</row>
                 <row>oxooooxoox</row>
+                <row>oooooooooo</row>
             </vertical>
         </walls>
         <positions>

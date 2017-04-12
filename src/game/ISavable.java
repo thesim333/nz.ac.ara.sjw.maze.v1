@@ -13,4 +13,5 @@ public interface ISavable {
     IPoint wheresTheseus();
     IPoint wheresMinotaur();
     IPoint wheresExit();
+    String getLevelName();
 }

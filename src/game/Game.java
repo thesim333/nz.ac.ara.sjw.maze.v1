@@ -9,15 +9,22 @@ import communal.Wall;
  */
 public class Game implements IGame, ISavable, ILoadable {
     //walls stored in [row][col] format
-	private Wall[][] topWalls;
-    private Wall[][] leftWalls;
-    private IPoint theseus;
-    private IPoint minotaur;
-    private IPoint exit;
-    private int moveCount = 0;
-    private String levelName;
+	protected Wall[][] topWalls;
+    protected Wall[][] leftWalls;
+    protected IPoint theseus;
+    protected IPoint minotaur;
+    protected IPoint exit;
+    protected int moveCount = 0;
+    protected String levelName;
+    protected int depth = 0;
+    protected int width = 0;
 
-    @Override
+	@Override
+	public void pauseTheseus() {
+		this.moveCount++;
+	}
+
+	@Override
     public Wall getTopWall(IPoint p) {
         return this.topWalls[p.getRow()][p.getCol()];
     }
@@ -45,40 +52,42 @@ public class Game implements IGame, ISavable, ILoadable {
 		if (relativeColPosition > 0 &&
 				this.isWallBlocking(Direction.LEFT, this.minotaur) == Wall.NOTHING) {
 			// move left
-		   this.actuallyMoveMinotaur(Direction.LEFT);
+		   this.moveMyThing(this.minotaur, Direction.LEFT);
 		}
 		else if (relativeColPosition < 0 &&
 				isWallBlocking(Direction.RIGHT, this.minotaur) == Wall.NOTHING) {
 			//move right
-			this.actuallyMoveMinotaur(Direction.RIGHT);
+			this.moveMyThing(this.minotaur, Direction.RIGHT);
 		}
 		//try move up/down
 		else if (relativeRowPosition > 0 &&
 				this.isWallBlocking(Direction.UP, this.minotaur) == Wall.NOTHING) {
 			//move up
-			this.actuallyMoveMinotaur(Direction.UP);
+			this.moveMyThing(this.minotaur, Direction.UP);
 		}
 		else if (relativeRowPosition < 0 &&
 				this.isWallBlocking(Direction.DOWN, this.minotaur) == Wall.NOTHING) {
-			this.actuallyMoveMinotaur(Direction.DOWN);
+			this.moveMyThing(this.minotaur, Direction.DOWN);
 		}
     }
 
-    private void actuallyMoveMinotaur(Direction direction) {
-        minotaur.translate(direction.rowAdjust, direction.colAdjust);
+    protected void moveMyThing(IPoint thing, Direction direction) {
+        thing.translate(direction.rowAdjust, direction.colAdjust);
     }
 
     @Override
-    public void moveTheseus(Direction direction) {
-    	if (isWallBlocking(direction, theseus) == Wall.NOTHING) {
+    public boolean moveTheseus(Direction direction) {
+    	if (isWallBlocking(direction, this.theseus) == Wall.NOTHING) {
     		//Move Theseus
-    		theseus.translate(direction.rowAdjust, direction.colAdjust);
+    		this.moveMyThing(this.theseus, direction);
     		//count + 1
     		moveCount++;
+    		return true;
     	}
+    	return false;
     }
     
-    private Wall isWallBlocking(Direction direction, IPoint p) {
+    protected Wall isWallBlocking(Direction direction, IPoint p) {
     	Wall thisWall = Wall.NOTHING;
     	switch(direction) {
 			case UP:
@@ -146,21 +155,31 @@ public class Game implements IGame, ISavable, ILoadable {
 		return exit;
 	}
 
-    @Override
-    public void createHorizontalWallArea(int depthDown, int widthAcross) {
-        this.topWalls = new Wall[depthDown][widthAcross];
-        for (int i = 0; i < depthDown; ++i){
-        	for (int j = 0; j < widthAcross; j++) {
-				this.topWalls[i][j] = Wall.NOTHING;
-			}
-        }
-    }
+	@Override
+	public void setDepthDown(int depthDown) {
+		this.depth = depthDown;
 
-    @Override
-    public void createVerticalWallArea(int depthDown, int widthAcross) {
-        this.leftWalls = new Wall[depthDown][widthAcross];
-		for (int i = 0; i < depthDown; ++i){
-			for (int j = 0; j < widthAcross; j++) {
+		if (this.width > 0) {
+			this.createWallArea();
+		}
+	}
+
+	@Override
+	public void setWidthAcross(int widthAcross) {
+		this.width = widthAcross;
+
+		if (this.depth > 0) {
+			this.createWallArea();
+		}
+	}
+
+	protected void createWallArea() {
+        this.leftWalls = new Wall[this.depth][this.width];
+        this.topWalls = new Wall[this.depth][this.width];
+
+		for (int i = 0; i < this.depth; ++i){
+			for (int j = 0; j < this.width; j++) {
+				this.topWalls[i][j] = Wall.NOTHING;
 				this.leftWalls[i][j] = Wall.NOTHING;
 			}
         }

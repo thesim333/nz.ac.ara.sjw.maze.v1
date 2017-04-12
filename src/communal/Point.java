@@ -4,8 +4,8 @@ package communal;
  * Created by Simon Winder on 26/03/2017.
  */
 public class Point implements IPoint {
-    private int row;
-    private int col;
+    protected int row;
+    protected int col;
 
     public Point(IPoint p) {
         this.row = p.getRow();
