@@ -206,40 +206,61 @@ public class Filer implements ISaver, ILoader {
         this.loadLevelOrLoadSaveByNumber(game, level, this.LEVEL_FILE);
     }
 
-    protected void loadLevelOrLoadSaveByNumber(ILoadable game, int level, String fileName) {
+    protected NodeList getMazeList(Document doc) {
         try {
-            Document doc = getXmlDoc(fileName);
             XPath xPath =  XPathFactory.newInstance().newXPath();
             String expression = "/mazes/maze";
             NodeList nodeList = (NodeList)xPath.compile(expression).evaluate(doc, XPathConstants.NODESET);
-            int levelToLoad = level % nodeList.getLength();
-            Node mazeNode = nodeList.item(levelToLoad);
-            Element mazeElement = (Element)mazeNode;
-
-            //get name
-            game.setName(mazeElement.getElementsByTagName("name").item(0).getTextContent());
-            //get rows
-            NodeList hRows = getWallsList(mazeElement, "horizontal");
-            NodeList vRows = getWallsList(mazeElement, "vertical");
-
-            game.setDepthDown(hRows.getLength());
-            game.setWidthAcross(vRows.item(0).getTextContent().length());
-
-            addWalls(game, "addWallLeft", vRows);
-            addWalls(game, "addWallAbove", hRows);
-
-            Element positions = (Element)mazeElement.getElementsByTagName("positions").item(0);
-            //NodeList positions = mazeElement.getElementsByTagName("positions").item(0).getChildNodes();
-            //get minotaur
-            game.addMinotaur(this.getPosition(positions, "minotaur"));
-            //get theseus
-            game.addTheseus(this.getPosition(positions, "theseus"));
-            //get exit
-            game.addExit(this.getPosition(positions, "exit"));
-
-        } catch (Exception e) {
+            return nodeList;
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
+    }
+
+    protected void loadLevelOrSaveIntoGame(ILoadable game, Element mazeElement) {
+        //get name
+        game.setName(mazeElement.getElementsByTagName("name").item(0).getTextContent());
+        //get rows
+        NodeList hRows = getWallsList(mazeElement, "horizontal");
+        NodeList vRows = getWallsList(mazeElement, "vertical");
+
+        game.setDepthDown(hRows.getLength());
+        game.setWidthAcross(vRows.item(0).getTextContent().length());
+
+        addWalls(game, "addWallLeft", vRows);
+        addWalls(game, "addWallAbove", hRows);
+
+        Element positions = (Element)mazeElement.getElementsByTagName("positions").item(0);
+        //NodeList positions = mazeElement.getElementsByTagName("positions").item(0).getChildNodes();
+        //get minotaur
+        game.addMinotaur(this.getPosition(positions, "minotaur"));
+        //get theseus
+        game.addTheseus(this.getPosition(positions, "theseus"));
+        //get exit
+        game.addExit(this.getPosition(positions, "exit"));
+    }
+
+    protected void loadLevelOrLoadSaveByName(ILoadable game, String level, String fileName) {
+        Document doc = this.getXmlDoc(fileName);
+        NodeList mazeList = this.getMazeList(doc);
+
+        for (int i = 0; i < mazeList.getLength(); i++) {
+            Element currentElement = (Element)mazeList.item(i);
+            if (currentElement.getElementsByTagName("name").item(0).getTextContent().equals(level)) {
+                this.loadLevelOrSaveIntoGame(game, currentElement);
+            }
+        }
+    }
+
+    protected void loadLevelOrLoadSaveByNumber(ILoadable game, int level, String fileName) {
+        Document doc = this.getXmlDoc(fileName);
+        NodeList mazeList = this.getMazeList(doc);
+        int levelToLoad = level % mazeList.getLength();
+        Node mazeNode = mazeList.item(levelToLoad);
+        Element mazeElement = (Element)mazeNode;
+        this.loadLevelOrSaveIntoGame(game, mazeElement);
     }
 
     protected NodeList getWallsList(Element maze, String type) {
@@ -299,5 +320,10 @@ public class Filer implements ISaver, ILoader {
     @Override
     public void loadSave(ILoadable game) {
         this.loadLevelOrLoadSaveByNumber(game, 0, this.SAVE_FILE);
+    }
+
+    @Override
+    public void loadSave(ILoadable game, String fileName, String level) {
+        this.loadLevelOrLoadSaveByName(game, level, fileName);
     }
 }

@@ -10,4 +10,5 @@ public interface ILoader {
     void loadLevel(ILoadable game, int level);
     void loadSave(ILoadable game, String fileName);
     void loadSave(ILoadable game);
+    void loadSave(ILoadable game, String fileName, String level);
 }

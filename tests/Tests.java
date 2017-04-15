@@ -235,7 +235,7 @@ public class Tests {
     }
 
     @Test
-    public void LoadsLevel1MinotaurMovesToTheseusMinotaurPosition() {
+    public void LoadsLevel1MinotaurMovesToTheseusCheckPositions() {
         IGame game = loadFirstLevel();
         game.moveTheseus(Direction.LEFT);
         game.moveMinotaur();
@@ -245,35 +245,41 @@ public class Tests {
         assertTrue(new Point(2, 0).equals(game.wheresMinotaur()));
     }
 
+    //Hard coded game move.
     @Test
     public void LoadsLevel1PlayWonGame() {
         IGame game = loadFirstLevel();
         assertTrue(game.moveTheseus(Direction.LEFT));
         assertFalse(game.isWon());
-        game.moveMinotaur();
         assertFalse(game.isLost());
-        game.moveMinotaur();
-        assertFalse(game.isLost());
-        assertTrue(game.moveTheseus(Direction.RIGHT));
-        assertFalse(game.isWon());
         game.moveMinotaur();
         assertFalse(game.isLost());
         game.moveMinotaur();
         assertFalse(game.isLost());
         assertTrue(game.moveTheseus(Direction.RIGHT));
         assertFalse(game.isWon());
+        assertFalse(game.isLost());
+        game.moveMinotaur();
+        assertFalse(game.isLost());
+        game.moveMinotaur();
+        assertFalse(game.isLost());
+        assertTrue(game.moveTheseus(Direction.RIGHT));
+        assertFalse(game.isWon());
+        assertFalse(game.isLost());
         game.moveMinotaur();
         assertFalse(game.isLost());
         game.moveMinotaur();
         assertFalse(game.isLost());
         assertTrue(game.moveTheseus(Direction.UP));
         assertFalse(game.isWon());
+        assertFalse(game.isLost());
         game.moveMinotaur();
         assertFalse(game.isLost());
         game.moveMinotaur();
         assertFalse(game.isLost());
         assertTrue(game.moveTheseus(Direction.RIGHT));
         assertTrue(game.isWon());
+        assertFalse(game.isLost());
         assertTrue(new Point(1, 1).equals(game.wheresMinotaur()));
     }
 
@@ -381,5 +387,48 @@ public class Tests {
         IGame game2 = new Game();
         loader.loadSave((ILoadable)game2);
         assertTrue(new Point(2, 2).equals(game2.wheresTheseus()));
+    }
+
+    @Test
+    public void saveGameLoadSaveFileSpecified() {
+        IGame game = loadFirstLevel();
+        assertTrue(new Point(2, 1).equals(game.wheresTheseus()));
+        game.moveTheseus(Direction.LEFT);
+        assertTrue(new Point(2, 0).equals(game.wheresTheseus()));
+        ISaver saver = new Filer();
+        saver.save((ISavable)game, "saves.xml");
+        ILoader loader = new Filer();
+        IGame game2 = new Game();
+        loader.loadSave((ILoadable)game2, "saves.xml");
+        assertTrue(new Point(2, 0).equals(game2.wheresTheseus()));
+    }
+
+    @Test
+    public void saveGameLoadSaveFileLevelSpecified() {
+        IGame game = loadFirstLevel();
+        assertTrue(new Point(2, 1).equals(game.wheresTheseus()));
+        game.moveTheseus(Direction.LEFT);
+        game.moveTheseus(Direction.UP);
+        assertTrue(new Point(1, 0).equals(game.wheresTheseus()));
+        ISaver saver = new Filer();
+        saver.save((ISavable)game, "saves.xml", "TestSave");
+        ILoader loader = new Filer();
+        IGame game2 = new Game();
+        loader.loadSave((ILoadable)game2, "saves.xml", "TestSave");
+        assertTrue(new Point(1, 0).equals(game2.wheresTheseus()));
+    }
+
+    @Test
+    public void loadAndSaveAndLoadLevel5() {
+        IGame game = new Game();
+        ILoader loader = new Filer();
+        loader.loadLevel((ILoadable)game, 4);
+        assertTrue(game.moveTheseus(Direction.LEFT));
+        assertTrue(new Point(1, 1).equals(game.wheresTheseus()));
+        ISaver saver = new Filer();
+        saver.save((ISavable) game, "saves.xml", "TestSave5");
+        IGame game2 = new Game();
+        loader.loadSave((ILoadable)game2, "saves.xml", "TestSave5");
+        assertTrue(new Point(1, 1).equals(game2.wheresTheseus()));
     }
 }
