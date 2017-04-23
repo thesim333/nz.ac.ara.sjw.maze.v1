@@ -45,6 +45,16 @@ public class Filer implements ISaver, ILoader {
         this.saveToXmlFile(game, this.SAVE_FILE, game.getLevelName());
     }
 
+    @Override
+    public void save(ISavable game, String fileName) {
+        this.saveToXmlFile(game, fileName, game.getLevelName());
+    }
+
+    @Override
+    public void save(ISavable game, String fileName, String levelName) {
+        this.saveToXmlFile(game, fileName, levelName);
+    }
+
     protected void saveToXmlFile(ISavable game, String fileName, String level) {
         this.saveGame(game, this.haveFileWantDoc(fileName), level, fileName);
     }
@@ -78,16 +88,6 @@ public class Filer implements ISaver, ILoader {
         else {
             return this.createXmlFile();
         }
-    }
-
-    @Override
-    public void save(ISavable game, String fileName) {
-        this.saveToXmlFile(game, fileName, game.getLevelName());
-    }
-
-    @Override
-    public void save(ISavable game, String fileName, String levelName) {
-        this.saveToXmlFile(game, fileName, levelName);
     }
 
     protected void saveGame(ISavable game, Document doc, String levelName, String fileName) {

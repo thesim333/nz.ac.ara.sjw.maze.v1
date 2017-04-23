@@ -49,23 +49,23 @@ public class Game implements IGame, ISavable, ILoadable {
         int relativeRowPosition = minotaur.getRow() - theseus.getRow();
         //try move left/right
         if (relativeColPosition > 0 &&
-                this.isWallBlocking(Direction.LEFT, this.minotaur) == Wall.NOTHING) {
+                !this.wallIsBlocking(Direction.LEFT, this.minotaur)) {
             // move left
             this.moveMyThing(this.minotaur, Direction.LEFT);
         }
         else if (relativeColPosition < 0 &&
-                isWallBlocking(Direction.RIGHT, this.minotaur) == Wall.NOTHING) {
+                !this.wallIsBlocking(Direction.RIGHT, this.minotaur)) {
             //move right
             this.moveMyThing(this.minotaur, Direction.RIGHT);
         }
         // try move up/down
         else if (relativeRowPosition > 0 &&
-                this.isWallBlocking(Direction.UP, this.minotaur) == Wall.NOTHING) {
+                !this.wallIsBlocking(Direction.UP, this.minotaur)) {
             //move up
             this.moveMyThing(this.minotaur, Direction.UP);
         }
         else if (relativeRowPosition < 0 &&
-                this.isWallBlocking(Direction.DOWN, this.minotaur) == Wall.NOTHING) {
+                !this.wallIsBlocking(Direction.DOWN, this.minotaur)) {
             this.moveMyThing(this.minotaur, Direction.DOWN);
         }
     }
@@ -76,7 +76,7 @@ public class Game implements IGame, ISavable, ILoadable {
 
     @Override
     public boolean moveTheseus(Direction direction) {
-    	if (isWallBlocking(direction, this.theseus) == Wall.NOTHING) {
+    	if (!this.wallIsBlocking(direction, this.theseus)) {
     	    //Move Theseus
             this.moveMyThing(this.theseus, direction);
             //count + 1
@@ -86,7 +86,7 @@ public class Game implements IGame, ISavable, ILoadable {
     	return false;
     }
     
-    protected Wall isWallBlocking(Direction direction, IPoint p) {
+    protected boolean wallIsBlocking(Direction direction, IPoint p) {
         Wall thisWall = Wall.NOTHING;
         switch(direction) {
             case UP:
@@ -101,7 +101,7 @@ public class Game implements IGame, ISavable, ILoadable {
             case RIGHT:
                 thisWall = leftWalls[p.getRow()][p.getCol() + 1];
         }
-        return thisWall;
+        return (thisWall == Wall.SOMETHING);
     }
     
     @Override

@@ -5,6 +5,9 @@ import filer.ILoader;
 import filer.ISaver;
 import game.*;
 import org.junit.Test;
+import solver.ISandbox;
+import solver.SandboxGame;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -430,5 +433,25 @@ public class Tests {
         IGame game2 = new Game();
         loader.loadSave((ILoadable)game2, "saves.xml", "TestSave5");
         assertTrue(new Point(1, 1).equals(game2.wheresTheseus()));
+    }
+
+    @Test
+    public void loadAndSolveLevel1() {
+        IGame game = this.loadFirstLevel();
+        ISandbox solvable = new SandboxGame();
+        solvable.createGameState((ISavable)game);
+        solvable.begin();
+        assertTrue(solvable.isSolved());
+    }
+
+    @Test
+    public void loadAndSolveLevel2() {
+        IGame game = new Game();
+        ILoader loader = new Filer();
+        loader.loadLevel((ILoadable)game, 1);
+        ISandbox solvable = new SandboxGame();
+        solvable.createGameState((ISavable)game);
+        solvable.begin();
+        assertTrue(solvable.isSolved());
     }
 }
